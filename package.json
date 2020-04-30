@@ -1,7 +1,7 @@
 {
-  "name": "mongoose_skeleton",
+  "name": "workouttracker",
   "version": "1.0.0",
-  "description": "",
+  "description": "A workout tracking appheroku config:set NODE_MODULES_CACHE=false",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
