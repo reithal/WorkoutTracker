@@ -1,8 +1,9 @@
 const router = require("express").Router();
-const Workouts = require("../models/workouts.js");
+const db = require("../models");
+//const Exercises = require("../models/Exercise.js");
 
 router.post("/api/workouts", ({ body }, res) => {
-  Workouts.create(body)
+  db.Workout.create(body)
     .then(dbWorkouts => {
       res.json(dbWorkouts);
     })
@@ -11,8 +12,9 @@ router.post("/api/workouts", ({ body }, res) => {
     });
 });
 
+
 router.post("/api/workouts/bulk", ({ body }, res) => {
-  Workouts.insertMany(body)
+  db.Workout.insertMany(body)
     .then(dbWorkouts => {
       res.json(dbWorkouts);
     })
@@ -22,14 +24,40 @@ router.post("/api/workouts/bulk", ({ body }, res) => {
 });
 
 router.get("/api/workouts", (req, res) => {
-  Workouts.find({})
-    .sort({ date: -1 })
+  db.Workout.find({})
+    
     .then(dbWorkouts => {
+      console.log(dbWorkouts)
       res.json(dbWorkouts);
     })
     .catch(err => {
       res.status(400).json(err);
     });
+});
+
+router.get("/api/workouts", (req, res) => {
+  db.Workout.find({})
+    
+    .then(dbWorkouts => {
+      console.log(dbWorkouts)
+      res.json(dbWorkouts);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+});
+
+router.get("/exercise", (req, res) => {
+
+  res.redirect("/exercise.html");
+//   db.Workout.find({})
+//     .populate("exercises")
+//     .then(dbWorkouts => {
+//       res.json(dbWorkouts);
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     });
 });
 
 module.exports = router;
