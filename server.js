@@ -9,8 +9,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static("public"));
+//"mongodb://localhost/workout"
+mongoose.Promise = global.Promise;
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://TrackerUser:Heroku1!@ds027509.mlab.com:27509/heroku_m9fbdlbw", {
+
+  useMongoClient: true,
   useNewUrlParser: true,
   useFindAndModify: false
 });
