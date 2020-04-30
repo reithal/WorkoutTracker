@@ -13,8 +13,6 @@ app.use(express.static("public"));
 mongoose.Promise = global.Promise;
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://TrackerUser:Heroku1!@ds027509.mlab.com:27509/heroku_m9fbdlbw", {
-
-  useMongoClient: true,
   useNewUrlParser: true,
   useFindAndModify: false
 });
