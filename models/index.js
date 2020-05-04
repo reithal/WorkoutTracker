@@ -1,4 +1,2 @@
-module.exports = {
-  Workout: require('./Workout.js'),
-  Exercise: require('./Exercise.js')
-};
+export const Workout = require('./Workout.js');
+export const Exercise = require('./Exercise.js');
