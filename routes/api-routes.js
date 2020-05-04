@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const db = require("../models");
-//const Exercises = require("../models/Exercise.js");
+
 
 router.post("/api/workouts", ({ body }, res) => {
   db.Workout.create(body)
@@ -12,9 +12,8 @@ router.post("/api/workouts", ({ body }, res) => {
     });
 });
 
-
-router.post("/api/workouts/bulk", ({ body }, res) => {
-  db.Workout.insertMany(body)
+router.put("/api/workouts/:id", (req, res) => {
+  db.Workout.findOneAndUpdate({_id:req.params.id}, { $push: { exercises: req.body } }, { new: true })
     .then(dbWorkouts => {
       res.json(dbWorkouts);
     })
@@ -23,41 +22,36 @@ router.post("/api/workouts/bulk", ({ body }, res) => {
     });
 });
 
-router.get("/api/workouts", (req, res) => {
-  db.Workout.find({})
-    
-    .then(dbWorkouts => {
-      console.log(dbWorkouts)
-      res.json(dbWorkouts);
-    })
-    .catch(err => {
-      res.status(400).json(err);
-    });
-});
-
-router.get("/api/workouts", (req, res) => {
-  db.Workout.find({})
-    
-    .then(dbWorkouts => {
-      console.log(dbWorkouts)
-      res.json(dbWorkouts);
-    })
-    .catch(err => {
-      res.status(400).json(err);
-    });
-});
 
 router.get("/exercise", (req, res) => {
-
-  res.redirect("/exercise.html");
-//   db.Workout.find({})
-//     .populate("exercises")
-//     .then(dbWorkouts => {
-//       res.json(dbWorkouts);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
+    res.redirect('/exercise.html');
 });
+
+router.get("/stats", (req, res) => {
+    res.redirect('/stats.html');
+});
+
+router.get("/api/workouts", (req, res) => {
+  db.Workout.find({})
+    .then(dbWorkouts => {
+      console.log(dbWorkouts)
+      res.json(dbWorkouts);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+});
+
+router.get("/api/workouts/range", (req, res) => {
+  db.Workout.find({})
+    .then(dbWorkouts => {
+      console.log(dbWorkouts)
+      res.json(dbWorkouts);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+});
+
 
 module.exports = router;
