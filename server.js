@@ -12,8 +12,8 @@ app.use(express.static("public"));
 //"mongodb://localhost/workout"
 mongoose.Promise = global.Promise;
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
-//mongoose.connect(process.env.MONGODB_URI || "mongodb://TrackerUser:Heroku1!@ds027509.mlab.com:27509/heroku_m9fbdlbw", {
+//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://TrackerUser:Heroku1!@ds027509.mlab.com:27509/heroku_m9fbdlbw", {
   useNewUrlParser: true,
   useFindAndModify: false
 });
